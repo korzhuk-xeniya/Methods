@@ -58,27 +58,30 @@ public class Main {
         calculatingWhetherTheLeapYearIs(year);
     }
 
-    public static void task3() {
-        System.out.println("Задача 3");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите расстояние от офиса до адреса доставки в км");
-        int deliveryDistance = scanner.nextInt();
+    public static void calculateNumberOfDaysOfDelivery(int distance) {
         int daysOfDelivery = 1;
         byte distance20 = 20;
         byte distance60 = 60;
         byte distance100 = 100;
-        if (deliveryDistance < distance20) {
+        if (distance < distance20) {
             System.out.println("Потребуется дней: " + daysOfDelivery);
-        } else if (deliveryDistance < distance60) {
+        } else if (distance < distance60) {
             daysOfDelivery = daysOfDelivery + 1;
             System.out.println("Потребуется дней: " + daysOfDelivery);
-        } else if (deliveryDistance <= distance100) {
+        } else if (distance <= distance100) {
             daysOfDelivery = daysOfDelivery + 2;
             System.out.println("Потребуется дней: " + daysOfDelivery);
         } else {
             System.out.println("Доставка не осуществляется");
         }
+    }
 
+    public static void task3() {
+        System.out.println("Задача 3");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите расстояние от офиса до адреса доставки в км");
+        int deliveryDistance = scanner.nextInt();
+        calculateNumberOfDaysOfDelivery(deliveryDistance);
     }
 
 }
