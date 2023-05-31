@@ -23,7 +23,8 @@ public class Main {
             } else {
                 System.out.println("Установите версию приложения для Android по ссылке");
             }
-        } else {
+        }
+        if (digit != 0 && digit !=1) {
             System.out.println("Введено недопустимое значение");
         }
     }
