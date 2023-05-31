@@ -8,8 +8,14 @@ public class Main {
     }
     public static void task2() {
         System.out.println("Задача 2");
-        int clientOS = 1;
-        int clientDeviceYear = 2015;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите год выпуска устройства");
+        int clientDeviceYear = scanner.nextInt();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("Введите тип операционной системы: Android или iOS");
+        String oS = scanner.next();
+        if (oS)
+        int clientOS = ;
         if (clientOS == 0) {
             if (clientDeviceYear >= 2015) {
                 System.out.println("Установите облегченную версию приложения для iOS по ссылке");
