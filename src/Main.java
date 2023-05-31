@@ -13,27 +13,24 @@ public class Main {
         System.out.println("Введите год выпуска устройства");
         int clientDeviceYear = scanner.nextInt();
         Scanner scanner2 = new Scanner(System.in);
-        System.out.println("Введите тип операционной системы: Android или iOS");
-        String oS = scanner.next();
-        String iOS = "iOS";
-        String android = "Android";
+        System.out.println("Введите 0, если тип операционной системы iOS. Введите 1, если тип операционной системы Android.");
+        int oS = scanner.nextInt();
         int currentYear = LocalDate.now().getYear();
-        if (oS.equalsIgnoreCase(iOS)) {
-
+        if (oS == 0) {
             if (clientDeviceYear >= currentYear) {
                 System.out.println("Установите облегченную версию приложения для iOS по ссылке");
             } else {
                 System.out.println("Установите версию приложения для iOS по ссылке");
             }
         }
-        if (oS.equalsIgnoreCase(android)) {
+        if (oS == 1) {
             if (clientDeviceYear >= currentYear) {
                 System.out.println("Установите облегченную версию приложения для Android по ссылке");
             } else {
                 System.out.println("Установите версию приложения для Android по ссылке");
             }
         } else {
-            System.out.println("Тип операционной системы введен некорректно");
+            System.out.println("Введено недопустимое значение");
         }
     }
     public static void calculatingWhetherTheLeapYearIs(int enterYear) {
