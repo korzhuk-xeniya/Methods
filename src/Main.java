@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -6,26 +7,38 @@ public class Main {
         task2();
         task3();
     }
-    public static void task2() {
-        System.out.println("Задача 2");
-        int clientOS = 1;
-        int clientDeviceYear = 2015;
-        if (clientOS == 0) {
-            if (clientDeviceYear >= 2015) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-            } else {
-                System.out.println("Установите версию приложения для iOS по ссылке");
-            }
+
+    public static void chooseTheApplicationVersion(int digit, int deviceYear) {
+        int currentYear = LocalDate.now().getYear();
+        int iOS = 0;
+        int android = 1;
+        if (digit != android && digit != iOS) {
+            System.out.println("ОС не поддерживается");
+            return;
         }
-        if (clientOS == 1) {
-            if (clientDeviceYear >= 2015) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
-            } else {
-                System.out.println("Установите версию приложения для Android по ссылке");
-            }
+        String oS = digit == 0 ? "iOS" : "Android";
+        if (deviceYear == currentYear) {
+            System.out.println("Установите обычную версию приложения для " + oS + " по ссылке");
+        } else if (deviceYear < currentYear) {
+            System.out.println("Установите облегченную  версию приложения для " + oS + " по ссылке");
+        } else {
+            System.out.println("Ваше устройство еще не выпущено");
         }
     }
-    public static void calculatingWhetherTheLeapYearIs(int enterYear) {
+
+
+    public static void task2() {
+        System.out.println("Задача 2");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите год выпуска устройства");
+        int clientDeviceYear = scanner.nextInt();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("Введите 0, если тип операционной системы iOS. Введите 1, если тип операционной системы Android.");
+        int oS = scanner.nextInt();
+        chooseTheApplicationVersion(oS, clientDeviceYear);
+    }
+
+    public static void calculateWhetherTheLeapYearIs(int enterYear) {
         byte coefficientEach4 = 4;
         byte coefficientEach100 = 100;
         short coefficientEach400 = 400;
@@ -41,7 +54,29 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите год");
         int year = scanner.nextInt();
-        calculatingWhetherTheLeapYearIs(year);
+        calculateWhetherTheLeapYearIs(year);
+    }
+
+    public static int calculateNumberOfDaysOfDelivery(int distance) {
+        int daysOfDelivery = -1;
+        byte distance20 = 20;
+        byte distance60 = 60;
+        byte distance100 = 100;
+        if (distance < distance20) {
+            daysOfDelivery = 1;
+        } else if (distance < distance60) {
+            daysOfDelivery = 2;
+        } else if (distance <= distance100) {
+            daysOfDelivery = 3;
+        }
+        return daysOfDelivery;
+    }
+    public static void  outputNumberOfDaysOfDelivery (int days) {
+        if (days > 0) {
+            System.out.println("Доставка будет осуществлена за " + days + " дней");
+        } else {
+            System.out.println("Доставка не осуществляется");
+        }
     }
 
     public static void task3() {
@@ -49,23 +84,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите расстояние от офиса до адреса доставки в км");
         int deliveryDistance = scanner.nextInt();
-        int daysOfDelivery = 1;
-        byte distance20 = 20;
-        byte distance60 = 60;
-        byte distance100 = 100;
-        if (deliveryDistance < distance20) {
-            daysOfDelivery = daysOfDelivery + 0;
-            System.out.println("Потребуется дней: " + daysOfDelivery);
-        } else if (deliveryDistance < distance60) {
-            daysOfDelivery = daysOfDelivery + 1;
-            System.out.println("Потребуется дней: " + daysOfDelivery);
-        } else if (deliveryDistance <= distance100) {
-            daysOfDelivery = daysOfDelivery + 2;
-            System.out.println("Потребуется дней: " + daysOfDelivery);
-        } else {
-            System.out.println("Доставка не осуществляется");
-        }
-
+        int daysOfDelivery = calculateNumberOfDaysOfDelivery(deliveryDistance);
+        outputNumberOfDaysOfDelivery(daysOfDelivery);
     }
 
 }
