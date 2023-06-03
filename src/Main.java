@@ -12,24 +12,22 @@ public class Main {
         int currentYear = LocalDate.now().getYear();
         int iOS = 0;
         int android = 1;
+        String oS = "Android";
         if (digit == iOS) {
-            if (deviceYear >= currentYear) {
-                System.out.println("Установите обычную версию приложения для iOS по ссылке");
+            oS = "iOS";
+            if (deviceYear == currentYear) {
+                System.out.println("Установите обычную версию приложения для " + oS + " по ссылке");
+            } else if (deviceYear < currentYear) {
+                System.out.println("Установите облегченную  версию приложения для " + oS + " по ссылке");
             } else {
-                System.out.println("Установите облегченную  версию приложения для iOS по ссылке");
+                System.out.println("Ваше устройство еще не выпущено");
             }
+        } else if (digit != android) {
+            System.out.println("ОС не поддерживается");
         }
-        if (digit == android) {
-            if (deviceYear >= currentYear) {
-                System.out.println("Установите обычную версию приложения для Android по ссылке");
-            } else {
-                System.out.println("Установите облегченную  версию приложения для Android по ссылке");
-            }
-        }
-        if (digit != iOS && digit != android) {
-            System.out.println("Введено недопустимое значение");
-        }
+
     }
+
 
     public static void task2() {
         System.out.println("Задача 2");
