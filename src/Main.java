@@ -12,20 +12,18 @@ public class Main {
         int currentYear = LocalDate.now().getYear();
         int iOS = 0;
         int android = 1;
-        String oS = "Android";
-        if (digit == iOS) {
-            oS = "iOS";
-            if (deviceYear == currentYear) {
-                System.out.println("Установите обычную версию приложения для " + oS + " по ссылке");
-            } else if (deviceYear < currentYear) {
-                System.out.println("Установите облегченную  версию приложения для " + oS + " по ссылке");
-            } else {
-                System.out.println("Ваше устройство еще не выпущено");
-            }
-        } else if (digit != android) {
+        if (digit != android && digit != iOS) {
             System.out.println("ОС не поддерживается");
+            return;
         }
-
+        String oS = digit == 0 ? "iOS" : "Android";
+        if (deviceYear == currentYear) {
+            System.out.println("Установите обычную версию приложения для " + oS + " по ссылке");
+        } else if (deviceYear < currentYear) {
+            System.out.println("Установите облегченную  версию приложения для " + oS + " по ссылке");
+        } else {
+            System.out.println("Ваше устройство еще не выпущено");
+        }
     }
 
 
@@ -60,20 +58,25 @@ public class Main {
     }
 
     public static int calculateNumberOfDaysOfDelivery(int distance) {
-        int daysOfDelivery = 1;
+        int daysOfDelivery = -1;
         byte distance20 = 20;
         byte distance60 = 60;
         byte distance100 = 100;
         if (distance < distance20) {
-            return daysOfDelivery;
+            daysOfDelivery = 1;
         } else if (distance < distance60) {
-            daysOfDelivery = daysOfDelivery + 1;
+            daysOfDelivery = 2;
         } else if (distance <= distance100) {
-            daysOfDelivery = daysOfDelivery + 2;
+            daysOfDelivery = 3;
+        }
+        return daysOfDelivery;
+    }
+    public static void  outputNumberOfDaysOfDelivery (int days) {
+        if (days > 0) {
+            System.out.println("Доставка будет осуществлена за " + days + " дней");
         } else {
             System.out.println("Доставка не осуществляется");
         }
-        return daysOfDelivery;
     }
 
     public static void task3() {
@@ -81,7 +84,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите расстояние от офиса до адреса доставки в км");
         int deliveryDistance = scanner.nextInt();
-        System.out.println("Доставка будет осуществлена за " + calculateNumberOfDaysOfDelivery(deliveryDistance) + " дней");
+        int daysOfDelivery = calculateNumberOfDaysOfDelivery(deliveryDistance);
+        outputNumberOfDaysOfDelivery(daysOfDelivery);
     }
 
 }
