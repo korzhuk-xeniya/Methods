@@ -8,23 +8,25 @@ public class Main {
         task3();
     }
 
-    public static void choosingTheApplicationVersion(int digit, int deviceYear) {
+    public static void chooseTheApplicationVersion(int digit, int deviceYear) {
         int currentYear = LocalDate.now().getYear();
-        if (digit == 0) {
+        int iOS = 0;
+        int android = 1;
+        if (digit == iOS) {
             if (deviceYear >= currentYear) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+                System.out.println("Установите обычную версию приложения для iOS по ссылке");
             } else {
-                System.out.println("Установите версию приложения для iOS по ссылке");
+                System.out.println("Установите облегченную  версию приложения для iOS по ссылке");
             }
         }
-        if (digit == 1) {
+        if (digit == android) {
             if (deviceYear >= currentYear) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                System.out.println("Установите обычную версию приложения для Android по ссылке");
             } else {
-                System.out.println("Установите версию приложения для Android по ссылке");
+                System.out.println("Установите облегченную  версию приложения для Android по ссылке");
             }
         }
-        if (digit != 0 && digit !=1) {
+        if (digit != iOS && digit != android) {
             System.out.println("Введено недопустимое значение");
         }
     }
@@ -37,10 +39,10 @@ public class Main {
         Scanner scanner2 = new Scanner(System.in);
         System.out.println("Введите 0, если тип операционной системы iOS. Введите 1, если тип операционной системы Android.");
         int oS = scanner.nextInt();
-        choosingTheApplicationVersion(oS, clientDeviceYear);
+        chooseTheApplicationVersion(oS, clientDeviceYear);
     }
 
-    public static void calculatingWhetherTheLeapYearIs(int enterYear) {
+    public static void calculateWhetherTheLeapYearIs(int enterYear) {
         byte coefficientEach4 = 4;
         byte coefficientEach100 = 100;
         short coefficientEach400 = 400;
@@ -56,25 +58,24 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите год");
         int year = scanner.nextInt();
-        calculatingWhetherTheLeapYearIs(year);
+        calculateWhetherTheLeapYearIs(year);
     }
 
-    public static void calculateNumberOfDaysOfDelivery(int distance) {
+    public static int calculateNumberOfDaysOfDelivery(int distance) {
         int daysOfDelivery = 1;
         byte distance20 = 20;
         byte distance60 = 60;
         byte distance100 = 100;
         if (distance < distance20) {
-            System.out.println("Потребуется дней: " + daysOfDelivery);
+            return daysOfDelivery;
         } else if (distance < distance60) {
             daysOfDelivery = daysOfDelivery + 1;
-            System.out.println("Потребуется дней: " + daysOfDelivery);
         } else if (distance <= distance100) {
             daysOfDelivery = daysOfDelivery + 2;
-            System.out.println("Потребуется дней: " + daysOfDelivery);
         } else {
             System.out.println("Доставка не осуществляется");
         }
+        return daysOfDelivery;
     }
 
     public static void task3() {
@@ -82,7 +83,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите расстояние от офиса до адреса доставки в км");
         int deliveryDistance = scanner.nextInt();
-        calculateNumberOfDaysOfDelivery(deliveryDistance);
+        System.out.println("Доставка будет осуществлена за " + calculateNumberOfDaysOfDelivery(deliveryDistance) + " дней");
     }
 
 }
